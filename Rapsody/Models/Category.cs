@@ -8,8 +8,9 @@ namespace Rapsody.Models
     public class Category
     {
         public int Id { get; set; }
-        public string categoryName { get; set; }
-        public string desc { get; set; }
+        public string CategoryName { get; set; }
+        public string Desc { get; set; }
+        public List<Food> foods { get; set; }
         
     }
 }

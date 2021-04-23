@@ -8,6 +8,6 @@ namespace Rapsody.Interfaces
 {
     public interface IFoodsCategory
     {
-        IEnumerable<Category> AllFoods { get; }
+        IEnumerable<Category> AllCategories { get; }
     }
 }

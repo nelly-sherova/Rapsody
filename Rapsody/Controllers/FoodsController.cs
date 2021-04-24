@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Rapsody.Interfaces;
+using Rapsody.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +21,10 @@ namespace Rapsody.Controllers
 
         public IActionResult List()
         {
-            var foods = _allFoods.Foods;
-            return View(foods);
+            FoodsListViewModels obj = new FoodsListViewModels();
+            obj.allFoods = _allFoods.Foods;
+            obj.foodCategory = "Еда";
+            return View(obj);
         }
     }
 }

@@ -1,15 +1,16 @@
-﻿@using Rapsody.Models;
-@model IEnumerable<Food>
+﻿@using Rapsody.ViewModels;
+@model FoodsListViewModels
 @{
     ViewData["Title"] = "List";
 }
 
 <h1>Все меню</h1>
+<h2>@Model.foodCategory</h2>
 @{
-    foreach(var food in Model)
+    foreach(var food in Model.allFoods)
     {
         <div>
-            <h2>Модель: @food.Name</h2>
+            <h3>Модель: @food.Name</h3>
             <p>Цена: @food.ToString()</p>
         </div>
     }

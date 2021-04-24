@@ -4,16 +4,20 @@
     ViewData["Title"] = "List";
 }
 
-<h1>Все меню</h1>
-<h2>@Model.foodCategory</h2>
-@{
-    foreach(var food in Model.allFoods)
-    {
-        <div>
-            <h3>Модель: @food.Name</h3>
-            <p>Цена: @food.ToString()</p>
-        </div>
+<div class="row mt-5 mb-2">
+    @{
+        foreach (var food in Model.allFoods)
+        {
+            <div class="col-lg-4">
+                <img class="img-thumbnail" src="@food.Img" alt="@food.Name" />
+                <h2>@food.Name</h2>
+                <p>@food.ShortDesc</p>
+                <p>Цена: @food.Price.ToString() р</p>
+                <p><a class="btn btn-warning" href="#">Подробнее</a> </p>
+            </div>
+        }
+
     }
 
-}
+</div>
 

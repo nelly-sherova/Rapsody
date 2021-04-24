@@ -28,7 +28,7 @@ namespace Rapsody.Mocks
                         "Оливковое масло, \n" +
                         "Бальзамеческий уксус,\n" +
                         "Чеснок",
-                        Img = "https://www.eat-me.ru/wp-content/uploads/2019/03/salat-kapreze-768x427.jpg",
+                        Img = "/img/Kaprese.jpg",
                         Price = 290,
                         IsFavorite = true,
                         Category = _foodsCategory.AllCategories.First()
@@ -38,7 +38,7 @@ namespace Rapsody.Mocks
                         Name = "Лимон",
                         ShortDesc = "40 г",
                         LongDesc = "",
-                        Img = "https://www.syl.ru/misc/i/ni/5/8/2/2/0/3/i/582203.jpg",
+                        Img = "/img/Lemon.jpg",
                         Price = 40,
                         IsFavorite = true,
                         Category = _foodsCategory.AllCategories.Last()

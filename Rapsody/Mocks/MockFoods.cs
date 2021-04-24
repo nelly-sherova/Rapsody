@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Rapsody.Mocks
 {
-    public class MoscFoods : IAllFoods
+    public class MockFoods : IAllFoods
     {
         private readonly IFoodsCategory _foodsCategory = new MockCategory();
         public IEnumerable<Food> Foods

@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Rapsody.Data;
 using Rapsody.Interfaces;
 using Rapsody.Mocks;
 using System;
@@ -15,16 +17,24 @@ namespace Rapsody
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public IConfigurationRoot _confString;
+
+        public Startup(IHostingEnvironment hostEnv)
+        {
+            _confString = new ConfigurationBinder().SetBasePath(hostEnv.ContentRootPath).AddJsonFile("dbsettings.json").Build();
+        }
+        /*public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-        }
+            
+        }*/
 
         public IConfiguration Configuration { get; }
 
         
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<AppDbContent>(options=> options.UseSqlServer(_confString.GetConnectionString("DefaultConnection"));
             services.AddControllersWithViews();
             services.AddTransient<IFoodsCategory, MockCategory>();
             services.AddTransient<IAllFoods, MockFoods>(); //объединение интерфейса с классом который реализует этот интерфейс

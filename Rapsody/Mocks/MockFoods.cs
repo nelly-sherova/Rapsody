@@ -31,7 +31,7 @@ namespace Rapsody.Mocks
                         Img = "/img/Kaprese.jpg",
                         Price = 290,
                         IsFavorite = true,
-                        Category = _foodsCategory.AllCategories.First()
+                        Category = _foodsCategory.AllCategories.FirstOrDefault(p=>p.CategoryName.Equals("Салаты"))
                     },
                     new Food
                     {

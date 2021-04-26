@@ -9,7 +9,7 @@ namespace Rapsody.Interfaces
     public interface IAllFoods
     {
         IEnumerable<Food> Foods { get; }
-        IEnumerable<Food> getFavFoods { get; set; }
+        IEnumerable<Food> getFavFoods { get; }
         Food getObjectFood(int foodId);
     }
 }

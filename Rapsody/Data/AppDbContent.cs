@@ -15,6 +15,6 @@ namespace Rapsody.Data
         }
 
         public DbSet<Food> Food { get; set; }
-        public DbSet<Category> Categories { get; set; }
+        public DbSet<Category> Category { get; set; }
     }
 }

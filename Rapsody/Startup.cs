@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Rapsody.Data;
+using Rapsody.Data.Repository;
 using Rapsody.Interfaces;
 using Rapsody.Mocks;
 using System;
@@ -17,27 +18,28 @@ namespace Rapsody
 {
     public class Startup
     {
-        public IConfigurationRoot _confString;
+        private IConfigurationRoot _confString;
 
-        public Startup(IHostingEnvironment hostEnv)
-        {
-            _confString = new ConfigurationBinder().SetBasePath(hostEnv.ContentRootPath).AddJsonFile("dbsettings.json").Build();
-        }
-        /*public Startup(IConfiguration configuration)
+      /* public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
             
         }*/
+
+        public Startup(Microsoft.AspNetCore.Hosting.IHostingEnvironment hostEnv)
+        {
+            _confString = new ConfigurationBuilder().SetBasePath(hostEnv.ContentRootPath).AddJsonFile("dbsettings.json").Build();
+        }
 
         public IConfiguration Configuration { get; }
 
         
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDbContent>(options=> options.UseSqlServer(_confString.GetConnectionString("DefaultConnection"));
+            services.AddDbContext<AppDbContent>(options => options.UseSqlServer(_confString.GetConnectionString("DefaultConnection")));
             services.AddControllersWithViews();
-            services.AddTransient<IFoodsCategory, MockCategory>();
-            services.AddTransient<IAllFoods, MockFoods>(); //объединение интерфейса с классом который реализует этот интерфейс
+            services.AddTransient<IFoodsCategory, CategoryRepository>();
+            services.AddTransient<IAllFoods, FoodRepository>(); //объединение интерфейса с классом который реализует этот интерфейс
         }
 
         

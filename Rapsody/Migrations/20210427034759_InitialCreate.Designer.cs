@@ -9,7 +9,7 @@ using Rapsody.Data;
 namespace Rapsody.Migrations
 {
     [DbContext(typeof(AppDbContent))]
-    [Migration("20210427024317_InitialCreate")]
+    [Migration("20210427034759_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

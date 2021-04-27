@@ -18,17 +18,11 @@ namespace Rapsody
 {
     public class Startup
     {
-        private IConfigurationRoot _confString;
 
-      /* public Startup(IConfiguration configuration)
+      public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
             
-        }*/
-
-        public Startup(Microsoft.AspNetCore.Hosting.IHostingEnvironment hostEnv)
-        {
-            _confString = new ConfigurationBuilder().SetBasePath(hostEnv.ContentRootPath).AddJsonFile("dbsettings.json").Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -36,7 +30,10 @@ namespace Rapsody
         
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDbContent>(options => options.UseSqlServer(_confString.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<AppDbContent>(opt =>
+            {
+                opt.UseSqlServer(Configuration.GetConnectionString("Default"));
+            });
             services.AddControllersWithViews();
             services.AddTransient<IFoodsCategory, CategoryRepository>();
             services.AddTransient<IAllFoods, FoodRepository>(); //объединение интерфейса с классом который реализует этот интерфейс

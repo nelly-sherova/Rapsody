@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace Rapsody.Data
 {
     public class AppDbContent : DbContext
@@ -16,5 +17,6 @@ namespace Rapsody.Data
 
         public DbSet<Food> Food { get; set; }
         public DbSet<Category> Category { get; set; }
+        public DbSet<RapsodyFoodsItem> RapsodyFoodItems { get; set; }
     }
 }

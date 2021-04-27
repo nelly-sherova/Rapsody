@@ -1,23 +1,12 @@
-﻿@using Rapsody.ViewModels;
-@model FoodsListViewModels
-@{
-    ViewData["Title"] = "List";
-}
+﻿<h1>Меню</h1>
+<h3>@Model.foodCategory</h3>
 
 <div class="row mt-5 mb-2">
     @{
-        foreach (var food in Model.allFoods)
+        foreach (Food food in Model.allFoods)
         {
-            <div class="col-lg-4">
-                <img class="img-thumbnail" src="@food.Img" alt="@food.Name" />
-                <h2>@food.Name</h2>
-                <p>@food.ShortDesc</p>
-                <p>Цена: @food.Price.ToString() р</p>
-                <p><a class="btn btn-warning" href="#">Подробнее</a> </p>
-            </div>
-        }
-
+            @Html.Partial("AllFoods", food);
+            }
     }
-
 </div>
 

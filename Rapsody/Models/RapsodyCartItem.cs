@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace Rapsody.Models
 {
-    public class RapsodyFoodsItem
+    public class RapsodyCartItem
     {
         public int Id { get; set; }
         public Food Food { get; set; }
         public double Price { get; set; }
-        public string RapsodyFoodId { get; set; }
+        public string RapsodyCartId { get; set; }
     }
 }

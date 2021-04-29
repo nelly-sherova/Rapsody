@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -9,6 +10,7 @@ using Rapsody.Data;
 using Rapsody.Data.Repository;
 using Rapsody.Interfaces;
 using Rapsody.Mocks;
+using Rapsody.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +39,11 @@ namespace Rapsody
             services.AddControllersWithViews();
             services.AddTransient<IFoodsCategory, CategoryRepository>();
             services.AddTransient<IAllFoods, FoodRepository>(); //объединение интерфейса с классом который реализует этот интерфейс
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped(sp => RapsodyCart.GetCart(sp)); // для того чтобы у разных пользователей были разные карзины
+            services.AddMemoryCache();
+            services.AddSession();
         }
 
         
@@ -54,7 +61,7 @@ namespace Rapsody
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthorization();

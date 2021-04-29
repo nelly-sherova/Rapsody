@@ -1,0 +1,13 @@
+﻿@model RapsodyCartViewModel
+
+<div class="container">
+    @foreach (var el in Model.rapsodyCart.listRapsodyItem)
+    {
+        <div class="alert-warning mt-3">
+            <b>Еда: </b> @el.Food.Name<br />
+            <b>Цена: </b> @el.Food.Price.ToString() p
+        </div>
+    }
+    <hr />
+    <div class="btn btn-danger" asp-controller ="Order">Оплатить</div>
+</div>

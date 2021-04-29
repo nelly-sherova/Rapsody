@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Rapsody.Data;
 
 namespace Rapsody.Migrations
 {
     [DbContext(typeof(AppDbContent))]
-    partial class AppDbContentModelSnapshot : ModelSnapshot
+    [Migration("20210429033656_RapsodyCartdb")]
+    partial class RapsodyCartdb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
